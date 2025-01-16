@@ -1,3 +1,3 @@
 function enterJoinz() {
-    alert("Bienvenue dans Joinz!");
+    alert("Découvrer prochainement l'univer de JOINZ!");
 }
