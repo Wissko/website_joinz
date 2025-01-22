@@ -11,17 +11,24 @@ body {
 
 .main-container {
     display: flex;
+    flex-direction: column; /* Par défaut pour mobile */
     align-items: center;
-    justify-content: space-between;
-    max-width: 1200px;
+    justify-content: center;
     width: 100%;
-    gap: 20px; /* Espace entre le texte et l'image */
-    padding: 0 20px;
+    max-width: 1200px;
+    padding: 20px;
 }
 
 .text-container {
     text-align: center;
     max-width: 600px;
+    margin-bottom: 20px;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 h1 {
@@ -63,6 +70,24 @@ button:hover, .conditions-button:hover {
 
 /* Styles pour l'image */
 .mockup-image {
-    width: 50vw; /* 50% de la largeur de l'écran */
+    width: 80%; /* Par défaut pour mobile */
     height: auto;
+    max-width: 600px; /* Taille maximale sur grand écran */
+}
+
+/* Styles pour les grands écrans */
+@media screen and (min-width: 768px) {
+    .main-container {
+        flex-direction: row; /* Aligne le texte et l'image côte à côte */
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .text-container {
+        max-width: 50%; /* Le texte prend la moitié de l'écran */
+    }
+
+    .mockup-image {
+        width: 50vw; /* L'image prend la moitié de la largeur de l'écran */
+    }
 }
