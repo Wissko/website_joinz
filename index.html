@@ -11,19 +11,29 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="main-container">
+  <div class="logo">
+    <img src="favicon-32x32.png" alt="Joinz Logo">
+</div>
+
+<!-- Menu déroulant en haut -->
+<div class="navbar">
+    <select onchange="window.location.href=this.value">
+        <option value="#">Choisir une page</option>
+        <option value="condition/">Conditions d'utilisation</option>
+        <option value="politique/">Politique de Confidentialité</option>
+        <option value="support/">Support</option>
+    </select>
+</div>
+
+<div class="main-container">
+    <!-- Texte au centre de la page -->
     <div class="text-container">
-      <h1>JOINZ!<br>CONNECT, SHARE, LIVE.</h1>
-      <p>Avec Joinz, organisez des événements, retrouvez vos amis en temps réel et partagez des moments uniques. Vivez vos rencontres, simplement.</p>
-      <button onclick="enterJoinz()">Step into Joinz</button>
-      <a href="condition/" class="conditions-button">Conditions d'utilisation</a>
-      <a href="politique/" class="conditions-button">Politique de Confidentialité</a>
-      <a href="support/" class="conditions-button">Support</a>
+        <h1>JOINZ!<span>CONNECT, SHARE, LIVE.</span></h1>
+        <p>Avec Joinz, organisez des événements, retrouvez vos amis en temps réel et partagez des moments uniques. Vivez vos rencontres, simplement.</p>
     </div>
-    <div class="image-container">
-      <img src="mockup_iphone-Photoroom.png" alt="Joinz Mockup" class="mockup-image">
-    </div>
-  </div>
-  <script src="script.js"></script>
+    
+    <!-- Image mockup du téléphone -->
+    <!-- <img src="mockup_iphone-Photoroom.png" alt="Joinz Mockup" class="mockup-image"> -->
+</div>
 </body>
 </html>
