@@ -53,7 +53,6 @@ section {
 
 .text-container {
     max-width: 800px;
-    text-align: center;
 }
 
 /* Styles spécifiques à la première section */
@@ -86,6 +85,12 @@ section {
     text-align: left;
 }
 
+/* Styles spécifiques à la troisième section */
+.find-events-section {
+    background: linear-gradient(to right, #4A148C, #3949AB, #1976D2);
+    text-align: left;
+}
+
 .section-content {
     display: flex;
     align-items: center;
@@ -94,20 +99,27 @@ section {
     max-width: 1200px;
 }
 
-.find-friends-section .text-container {
-    flex: 1;
-    text-align: left;
-    padding-right: 20px;
+.section-content.reverse {
+    flex-direction: row-reverse;
 }
 
-.find-friends-section h2 {
+.find-friends-section .text-container,
+.find-events-section .text-container {
+    flex: 1;
+    text-align: left;
+    padding: 0 40px;
+}
+
+.find-friends-section h2,
+.find-events-section h2 {
     font-size: 60px;
     font-weight: bold;
     line-height: 1.2;
     margin-bottom: 20px;
 }
 
-.find-friends-section p {
+.find-friends-section p,
+.find-events-section p {
     font-size: 20px;
     line-height: 1.6;
 }
@@ -127,16 +139,19 @@ section {
 /* Styles pour le scroll fluide */
 html {
     scroll-behavior: smooth;
+    scroll-snap-type: y proximity;
 }
 
 @media (max-width: 768px) {
-    .section-content {
+    .section-content,
+    .section-content.reverse {
         flex-direction: column;
     }
     
-    .find-friends-section .text-container {
+    .find-friends-section .text-container,
+    .find-events-section .text-container {
         text-align: center;
-        padding-right: 0;
+        padding: 0;
         margin-bottom: 40px;
     }
     
@@ -144,7 +159,8 @@ html {
         font-size: 60px;
     }
     
-    .find-friends-section h2 {
+    .find-friends-section h2,
+    .find-events-section h2 {
         font-size: 40px;
     }
 }
