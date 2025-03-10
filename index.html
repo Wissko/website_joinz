@@ -4,21 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Joinz</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icon.png">
     <link rel="manifest" href="site.webmanifest">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="logo">
-        <img src="logo.png" alt="Joinz Logo">
+        <img src="64.png" alt="Joinz Logo">
     </div>
     
     <!-- Menu déroulant en haut -->
     <div class="navbar">
         <select onchange="window.location.href=this.value">
             <option value="#">Choisir une page</option>
+            <!--<option value="download.html">Télécharger</option>-->
             <option value="condition/">Conditions d'utilisation</option>
             <option value="politique/">Politique de Confidentialité</option>
             <option value="support/">Support</option>
@@ -71,6 +72,59 @@
             </div>
         </div>
     </section>
+
+    <!-- Cinquième section - Découvre les bars et restos -->
+    <section class="discover-places-section">
+      <div class="section-content reverse">
+          <div class="phone-mockup">
+              <img src="bars-restos-mockup.png" alt="Joinz Bars et Restos">
+          </div>
+          <div class="text-container">
+              <h2>Découvre les<br>meilleurs bars et<br>restos autour de<br>toi !</h2>
+              <p>Trouve facilement les spots<br>parfaits pour sortir et retrouve<br>tes amis sans prise de tête.</p>
+          </div>
+      </div>
+    </section>
+
+    <!-- Sixième section - Téléchargement -->
+    <section class="download-section">
+        <div class="section-content">
+            <div class="text-container center">
+                <h2>Step in and let the<br>good times roll!</h2>
+                <p>Don't wait—join the fun now!</p>
+                <div class="app-buttons">
+                    <a href="#" class="app-store">
+                        <img src="app-store-icon.png" alt="App Store">
+                    </a>
+                    <a href="#" class="google-play">
+                        <img src="google-play-icon.png" alt="Google Play">
+                    </a>
+                </div>
+                <a href="download.html" class="download-btn">Download Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Follow us</h3>
+                <a href="#">Instagram</a>
+                <a href="https://www.linkedin.com/company/joinzfr/?viewAsMember=true">LinkedIn</a>
+            </div>
+            <div class="footer-column">
+                <h3>JOINZ</h3>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <a href="politique/">Privacy Policy</a>
+            <a href="condition/">Terms & Condition</a>
+        </div>
+    </footer>
 
     <div class="sweep-effect"></div>
 
