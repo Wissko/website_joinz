@@ -49,14 +49,14 @@ section::after {
     display: none; /* Désactivation de l'effet d'aura */
 }
 
-/* Styles pour l'ensemble du site */
+/* Styles pour le logo (mis à jour pour 64x64 et sans fond blanc) */
 .logo {
     position: fixed;
     top: 20px;
     left: 20px;
-    width: 50px;
-    height: 50px;
-    background-color: white;
+    width: 64px; /* Changé de 50px à 64px */
+    height: 64px; /* Changé de 50px à 64px */
+    background-color: transparent; /* Supprime le fond blanc du conteneur */
     border-radius: 50%; /* Cercle pour effet magique */
     display: flex;
     align-items: center;
@@ -64,6 +64,12 @@ section::after {
     z-index: 100;
     box-shadow: 0 0 15px rgba(156, 39, 176, 0.7); /* Lueur violette */
     transition: transform 0.3s ease;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    background: transparent; /* Assure que l'image n'a pas de fond */
 }
 
 .logo:hover {
@@ -148,7 +154,7 @@ section::after {
     text-align: center;
 }
 
-/* Styles spécifiques à la première section avec dégradé personnalisé */
+/* Styles spécifiques à la première section */
 .hero-section {
     background: linear-gradient(45deg, #00A9E0, #9C27B0, #E91E63);
     text-align: center;
