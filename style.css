@@ -3,9 +3,25 @@ body {
     font-family: Arial, sans-serif;
     color: white;
     overflow-x: hidden;
+    background: #0a0a23; /* Fond sombre pour effet magique */
+    position: relative;
 }
 
-/* Styles communs */
+/* Effet de particules magiques en fond */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="1" fill="rgba(255,255,255,0.2)"/></svg>') repeat;
+    animation: sparkle 20s infinite linear;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Styles communs pour les sections sans bordures nettes */
 section {
     min-height: 100vh;
     width: 100%;
@@ -18,8 +34,22 @@ section {
     scroll-snap-align: start;
     position: relative;
     z-index: 10;
+    overflow: hidden; /* Pour contenir les effets */
+    border: none; /* Suppression des bordures */
+    background: transparent; /* Suppression du fond par défaut */
 }
 
+/* Transition fluide entre sections avec dégradés */
+section + section {
+    background: linear-gradient(to bottom, transparent, transparent); /* Transition transparente */
+}
+
+/* Suppression de l'aura lumineuse des sections pour éviter les délimitations */
+section::after {
+    display: none; /* Désactivation de l'effet d'aura */
+}
+
+/* Styles pour l'ensemble du site */
 .logo {
     position: fixed;
     top: 20px;
@@ -27,11 +57,17 @@ section {
     width: 50px;
     height: 50px;
     background-color: white;
-    border-radius: 10px;
+    border-radius: 50%; /* Cercle pour effet magique */
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 100;
+    box-shadow: 0 0 15px rgba(156, 39, 176, 0.7); /* Lueur violette */
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.1) rotate(360deg); /* Rotation magique */
 }
 
 .navbar {
@@ -44,72 +80,132 @@ section {
 }
 
 .navbar select {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.9);
     color: #9C27B0;
     padding: 8px 16px;
     border-radius: 20px;
     border: none;
     font-weight: bold;
     cursor: pointer;
+    box-shadow: 0 0 10px rgba(156, 39, 176, 0.5);
+    transition: box-shadow 0.3s ease;
+}
+
+.navbar select:hover {
+    box-shadow: 0 0 20px rgba(156, 39, 176, 0.8);
 }
 
 .text-container {
     max-width: 800px;
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    transition: opacity 0.5s ease, transform 0.5s ease, text-shadow 0.3s ease, scale 0.3s ease;
+    position: relative;
+    cursor: default; /* Pour indiquer que le texte est interactif */
+}
+
+.text-container.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7); /* Lueur de base */
+}
+
+/* Effet de survol sur le texte */
+.text-container:hover {
+    transform: scale(1.05); /* Zoom léger */
+    text-shadow: 0 0 20px rgba(156, 39, 176, 1), 0 0 40px rgba(255, 255, 255, 0.8); /* Auréole lumineuse magnifique */
+}
+
+/* Effet d'étoiles scintillantes autour du texte */
+.text-container::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: calc(100% + 40px);
+    height: calc(100% + 40px);
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+    opacity: 0;
+    animation: twinkle 4s infinite ease-in-out;
+    z-index: -1; /* Derrière le texte */
+}
+
+/* Effet d'auréole supplémentaire au survol */
+.text-container:hover::after {
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: -30px;
+    width: calc(100% + 60px);
+    height: calc(100% + 60px);
+    background: radial-gradient(circle, rgba(156, 39, 176, 0.5) 0%, rgba(156, 39, 176, 0) 70%);
+    opacity: 0.8;
+    z-index: -1;
+    animation: glowBurst 0.5s ease-out;
 }
 
 .text-container.center {
     text-align: center;
 }
 
-/* Styles spécifiques à la première section */
+/* Styles spécifiques à la première section avec dégradé personnalisé */
 .hero-section {
-    background: linear-gradient(to right, #00A9E0, #9C27B0, #E91E63);
+    background: linear-gradient(45deg, #00A9E0, #9C27B0, #E91E63);
     text-align: center;
+    animation: gradientFlow 10s infinite ease-in-out;
+    position: relative;
+    overflow: hidden;
 }
 
 .hero-section h1 {
     font-size: 100px;
     font-weight: bold;
     margin-bottom: 10px;
+    background: linear-gradient(45deg, #fff, #9C27B0); /* Gradient pour "JOINZ!" */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; /* Utilisation du gradient comme couleur */
+    text-shadow: 0 0 20px rgba(156, 39, 176, 0.9), 0 0 40px rgba(255, 255, 255, 0.7); /* Lueur plus intense et opaque */
+    opacity: 1; /* Assure une opacité complète */
+    animation: glowText 3s infinite alternate; /* Animation de lueur */
 }
 
 .hero-section span {
     display: block;
     font-size: 24px;
     margin-top: 10px;
+    color: rgba(255, 255, 255, 0.9); /* Légère transparence pour contraste */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Lueur subtile */
 }
 
 .hero-section p {
     font-size: 18px;
     line-height: 1.6;
     margin-bottom: 30px;
+    color: rgba(255, 255, 255, 0.8); /* Légère transparence */
 }
 
-/* Styles spécifiques à la deuxième section */
+/* Styles spécifiques aux autres sections avec dégradés fluides */
 .find-friends-section {
     background: linear-gradient(to right, #9C27B0, #8E24AA, #4A148C);
     text-align: left;
 }
 
-/* Styles spécifiques à la troisième section */
 .find-events-section {
     background: linear-gradient(to right, #4A148C, #3949AB, #1976D2);
     text-align: left;
 }
 
-/* Styles spécifiques à la quatrième section */
 .create-events-section {
     background: linear-gradient(to right, #1976D2, #00BCD4, #009688);
     text-align: left;
 }
 
-/* Styles spécifiques à la cinquième section */
 .discover-places-section {
     background: linear-gradient(to right, #009688, #4CAF50, #8BC34A);
     text-align: left;
 }
 
-/* Styles spécifiques à la section de téléchargement */
 .download-section {
     background: linear-gradient(to right, #9C27B0, #E91E63, #FF9800);
     text-align: center;
@@ -118,12 +214,15 @@ section {
     justify-content: center;
 }
 
+/* Ajustements pour les contenus des sections */
 .section-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
     max-width: 1200px;
+    position: relative;
+    background: transparent; /* Pas de fond rectangulaire */
 }
 
 .section-content.reverse {
@@ -137,6 +236,7 @@ section {
     justify-content: center;
     width: 100%;
     max-width: 1200px;
+    background: transparent;
 }
 
 .find-friends-section .text-container,
@@ -146,6 +246,7 @@ section {
     flex: 1;
     text-align: left;
     padding: 0 40px;
+    background: transparent;
 }
 
 .find-friends-section h2,
@@ -175,6 +276,7 @@ section {
     justify-content: center;
     text-align: center;
     width: 100%;
+    background: transparent;
 }
 
 .download-section h2 {
@@ -190,12 +292,20 @@ section {
     flex: 1;
     display: flex;
     justify-content: center;
+    position: relative;
+    background: transparent;
 }
 
 .phone-mockup img {
     max-width: 100%;
     height: auto;
     max-height: 80vh;
+    filter: drop-shadow(0 0 20px rgba(156, 39, 176, 0.5));
+    transition: transform 0.3s ease;
+}
+
+.phone-mockup:hover img {
+    transform: scale(1.05) rotate(2deg); /* Effet magique au survol */
 }
 
 /* Styles pour les boutons d'app store */
@@ -205,6 +315,7 @@ section {
     gap: 20px;
     margin: 30px auto;
     width: 100%;
+    background: transparent;
 }
 
 .app-buttons a {
@@ -212,11 +323,13 @@ section {
     background-color: #333;
     border-radius: 10px;
     padding: 10px 20px;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 }
 
 .app-buttons a:hover {
-    transform: scale(1.05);
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
 }
 
 .app-buttons img {
@@ -233,14 +346,26 @@ section {
     padding: 15px 40px;
     border-radius: 30px;
     text-decoration: none;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 20px rgba(156, 39, 176, 0.7);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin: 20px auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.download-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 70%);
+    animation: shine 3s infinite ease-in-out;
 }
 
 .download-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 0 30px rgba(156, 39, 176, 1);
 }
 
 /* Footer */
@@ -249,6 +374,8 @@ footer {
     padding: 40px 20px;
     width: 100%;
     box-sizing: border-box;
+    position: relative;
+    z-index: 10;
 }
 
 .footer-content {
@@ -302,29 +429,42 @@ html {
     scroll-snap-type: y proximity;
 }
 
-/* Effet de balayage */
-.sweep-effect {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to right, #00A9E0, #9C27B0, #E91E63);
-    z-index: 1000;
-    transform: translateX(-100%);
-    pointer-events: none;
-    opacity: 0;
-    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+/* Animations */
+@keyframes sparkle {
+    0% { background-position: 0 0; }
+    100% { background-position: 100px 100px; }
 }
 
-.sweep-effect.active {
-    transform: translateX(0);
-    opacity: 1;
+@keyframes glowPulse {
+    0%, 100% { transform: scale(1); opacity: 0.1; }
+    50% { transform: scale(1.1); opacity: 0.3; }
 }
 
-.sweep-effect.hide {
-    transform: translateX(100%);
-    opacity: 0;
+@keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.05); }
+}
+
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) rotate(45deg); }
+}
+
+@keyframes glowBurst {
+    0% { opacity: 0; transform: scale(0.8); }
+    100% { opacity: 0.8; transform: scale(1); }
+}
+
+@keyframes glowText {
+    0% { text-shadow: 0 0 20px rgba(156, 39, 176, 0.9), 0 0 40px rgba(255, 255, 255, 0.7); }
+    50% { text-shadow: 0 0 30px rgba(156, 39, 176, 1), 0 0 60px rgba(255, 255, 255, 0.8); }
+    100% { text-shadow: 0 0 20px rgba(156, 39, 176, 0.9), 0 0 40px rgba(255, 255, 255, 0.7); }
 }
 
 @media (max-width: 768px) {
@@ -367,5 +507,9 @@ html {
     .app-buttons {
         flex-direction: column;
         align-items: center;
+    }
+    
+    .text-container::before {
+        display: none; /* Désactiver l'effet d'étoiles sur mobile */
     }
 }

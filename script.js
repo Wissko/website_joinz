@@ -1,75 +1,74 @@
 document.addEventListener('DOMContentLoaded', function() {
     const sections = document.querySelectorAll('section');
-    const sweepEffect = document.querySelector('.sweep-effect');
     let currentSection = 0;
-    let isScrolling = false;
-    let startY = 0;
-    let timeout;
 
-    // Détecter le début du défilement
-    document.addEventListener('wheel', handleScroll);
-    document.addEventListener('touchstart', handleTouchStart, { passive: true });
-    document.addEventListener('touchmove', handleTouchMove, { passive: false });
-
-    function handleScroll(e) {
-        if (isScrolling) return;
-        
-        const direction = e.deltaY > 0 ? 1 : -1;
-        triggerSweepEffect(direction);
+    // Fonction pour gérer la visibilité du texte
+    function updateTextVisibility() {
+        sections.forEach((section, index) => {
+            const textContainer = section.querySelector('.text-container');
+            if (textContainer) {
+                if (index === currentSection) {
+                    textContainer.classList.add('visible');
+                } else {
+                    textContainer.classList.remove('visible');
+                }
+            }
+        });
     }
 
-    function handleTouchStart(e) {
-        startY = e.touches[0].clientY;
-    }
+    // Observer pour détecter quelle section est visible
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const sectionIndex = Array.from(sections).indexOf(entry.target);
+                currentSection = sectionIndex;
+                updateTextVisibility();
+            }
+        });
+    }, {
+        threshold: 0.5
+    });
 
-    function handleTouchMove(e) {
-        if (isScrolling) return;
-        
-        const currentY = e.touches[0].clientY;
-        const direction = startY > currentY ? 1 : -1;
-        
-        // Vérifier si le défilement est suffisant pour déclencher l'effet
-        if (Math.abs(startY - currentY) > 50) {
-            triggerSweepEffect(direction);
-            startY = currentY;
-        }
-    }
+    // Observer toutes les sections
+    sections.forEach(section => {
+        observer.observe(section);
+    });
 
-    function triggerSweepEffect(direction) {
-        const nextSection = currentSection + direction;
-        
-        // Vérifier si la section suivante existe
-        if (nextSection >= 0 && nextSection < sections.length) {
-            isScrolling = true;
-            
-            // Obtenir la couleur de fond de la section suivante pour l'effet
-            const nextSectionBg = getComputedStyle(sections[nextSection]).backgroundImage;
-            sweepEffect.style.backgroundImage = nextSectionBg;
-            
-            // Appliquer l'effet de balayage
-            sweepEffect.classList.add('active');
-            
-            // Après une courte période, déplacer vers la section suivante
-            setTimeout(() => {
-                sections[nextSection].scrollIntoView({ behavior: 'auto' });
-                currentSection = nextSection;
-                
-                // Compléter l'animation
-                sweepEffect.classList.add('hide');
-                
-                // Réinitialiser l'effet
-                setTimeout(() => {
-                    sweepEffect.classList.remove('active', 'hide');
-                    isScrolling = false;
-                }, 500);
-            }, 400);
-        }
-    }
-    
-    // Assurer que la première section est visible au chargement
+    // Effet de particules au mouvement de la souris
+    document.addEventListener('mousemove', (e) => {
+        const particle = document.createElement('div');
+        particle.className = 'magic-particle';
+        particle.style.left = `${e.pageX}px`;
+        particle.style.top = `${e.pageY}px`;
+        document.body.appendChild(particle);
+        setTimeout(() => particle.remove(), 1000);
+    });
+
+    // Initialiser la première section
     sections[0].scrollIntoView({ behavior: 'auto' });
+    updateTextVisibility();
 });
 
 function enterJoinz() {
-    alert("Bienvenue dans Joinz!");
+    alert("Bienvenue dans l'univers magique de Joinz!");
 }
+
+// Style des particules ajouté dynamiquement
+const styleSheet = document.createElement('style');
+styleSheet.textContent = `
+    .magic-particle {
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        background: radial-gradient(circle, rgba(156, 39, 176, 0.8), transparent);
+        border-radius: 50%;
+        pointer-events: none;
+        animation: particleFade 1s ease-out forwards;
+        z-index: 5;
+    }
+    @keyframes particleFade {
+        0% { transform: scale(1); opacity: 1; }
+        100% { transform: scale(2); opacity: 0; }
+    }
+`;
+document.head.appendChild(styleSheet);
