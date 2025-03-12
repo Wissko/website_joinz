@@ -49,11 +49,17 @@ section::after {
     display: none; /* Désactivation de l'effet d'aura */
 }
 
-/* Styles pour le logo (mis à jour pour 64x64 et sans fond blanc) */
-.logo {
+/* Nouveau conteneur pour le logo et les liens */
+.header-container {
     position: fixed;
     top: 20px;
     left: 20px;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+}
+
+.logo {
     width: 64px; /* Changé de 50px à 64px */
     height: 64px; /* Changé de 50px à 64px */
     background-color: transparent; /* Supprime le fond blanc du conteneur */
@@ -61,9 +67,9 @@ section::after {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 100;
     box-shadow: 0 0 15px rgba(156, 39, 176, 0.7); /* Lueur violette */
     transition: transform 0.3s ease;
+    margin-right: 20px; /* Espacement entre le logo et les liens */
 }
 
 .logo img {
@@ -76,31 +82,26 @@ section::after {
     transform: scale(1.1) rotate(360deg); /* Rotation magique */
 }
 
-.navbar {
-    position: fixed;
-    top: 20px;
-    right: 20px;
+.nav-links {
     display: flex;
     align-items: center;
-    z-index: 100;
 }
 
-.navbar select {
-    background-color: rgba(255, 255, 255, 0.9);
-    color: #9C27B0;
-    padding: 8px 16px;
-    border-radius: 20px;
-    border: none;
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 15px;
+    font-size: 14px;
     font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 0 10px rgba(156, 39, 176, 0.5);
-    transition: box-shadow 0.3s ease;
+    transition: color 0.3s ease;
 }
 
-.navbar select:hover {
-    box-shadow: 0 0 20px rgba(156, 39, 176, 0.8);
+.nav-links a:hover {
+    color: #d1b5d5; /* Couleur violette au survol */
+    text-decoration: underline;
 }
 
+/* Styles pour les sections sans bordures nettes */
 .text-container {
     max-width: 800px;
     opacity: 0;
@@ -108,6 +109,7 @@ section::after {
     transition: opacity 0.5s ease, transform 0.5s ease, text-shadow 0.3s ease, scale 0.3s ease;
     position: relative;
     cursor: default; /* Pour indiquer que le texte est interactif */
+    background: transparent; /* Assure qu'il n'y a pas de fond */
 }
 
 .text-container.visible {
@@ -163,17 +165,48 @@ section::after {
     overflow: hidden;
 }
 
+/* Ajustement spécifique pour .hero-section .text-container */
+.hero-section .text-container {
+    background: none; /* Assure qu'il n'y a pas de fond */
+    padding: 0; /* Supprime tout padding qui pourrait créer un rectangle */
+    box-shadow: none; /* Supprime toute ombre qui pourrait créer un rectangle */
+}
+
+/* Ajustement du h1 dans .hero-section */
 .hero-section h1 {
-    font-family: 'Poppins', sans-serif; /* Nouvelle police formelle mais stylée */
+    font-family: 'Poppins', sans-serif; /* Police formelle mais stylée */
     font-weight: 800; /* ExtraBold pour un effet bombé */
     font-size: 100px;
     margin-bottom: 10px;
-    color: white; /* Couleur conservée */
-    text-shadow: 0 0 15px rgba(156, 39, 176, 0.8), 0 5px 10px rgba(0, 0, 0, 0.3); /* Ombre pour effet bombé */
-    opacity: 1; /* Assure une opacité complète */
-    animation: glowText 3s infinite alternate; /* Animation de lueur conservée */
+    color: white; /* Couleur de base */
+    position: relative; /* Pour permettre l'effet de fond */
+    animation: gentleGlow 4s infinite ease-in-out; /* Nouvelle animation douce */
+    text-shadow: 0 0 10px rgba(156, 39, 176, 0.6), /* Ombre violette subtile */
+                 0 0 20px rgba(255, 255, 255, 0.4); /* Lueur blanche douce */
     -webkit-background-clip: initial; /* Suppression de l'effet de gradient */
     background-clip: initial; /* Suppression de l'effet de gradient */
+}
+
+/* Nouvelle animation pour un effet de lueur douce */
+@keyframes gentleGlow {
+    0% {
+        text-shadow: 0 0 10px rgba(156, 39, 176, 0.6),
+                     0 0 20px rgba(255, 255, 255, 0.4),
+                     0 0 5px rgba(255, 255, 255, 0.2);
+        color: white;
+    }
+    50% {
+        text-shadow: 0 0 15px rgba(156, 39, 176, 0.8),
+                     0 0 30px rgba(255, 255, 255, 0.6),
+                     0 0 10px rgba(255, 255, 255, 0.3);
+        color: #e0e0ff; /* Légère teinte violette pour plus de magie */
+    }
+    100% {
+        text-shadow: 0 0 10px rgba(156, 39, 176, 0.6),
+                     0 0 20px rgba(255, 255, 255, 0.4),
+                     0 0 5px rgba(255, 255, 255, 0.2);
+        color: white;
+    }
 }
 
 .hero-section span {
@@ -300,14 +333,21 @@ section::after {
     justify-content: center;
     position: relative;
     background: transparent;
+    overflow: visible; /* Ajouté pour éviter que l'image agrandie ne soit coupée */
 }
 
 .phone-mockup img {
-    max-width: 100%;
+    max-width: 120%; /* Augmenté pour rendre les mockups plus grands */
     height: auto;
-    max-height: 80vh;
+    max-height: 90vh; /* Augmenté pour plus de hauteur */
     filter: drop-shadow(0 0 20px rgba(156, 39, 176, 0.5));
-    transition: transform 0.3s ease;
+    transition: transform 1s ease;
+    transform: translateX(100vw); /* Position initiale hors écran à droite */
+}
+
+.phone-mockup.swipe-in img {
+    transform: translateX(0); /* Ramène à la position normale */
+    transition: transform 0.8s ease-out; /* Animation fluide */
 }
 
 .phone-mockup:hover img {
@@ -468,10 +508,45 @@ html {
     100% { opacity: 0.8; transform: scale(1); }
 }
 
-@keyframes glowText {
-    0% { text-shadow: 0 0 15px rgba(156, 39, 176, 0.8), 0 5px 10px rgba(0, 0, 0, 0.3); }
-    50% { text-shadow: 0 0 25px rgba(156, 39, 176, 1), 0 5px 15px rgba(0, 0, 0, 0.4); }
-    100% { text-shadow: 0 0 15px rgba(156, 39, 176, 0.8), 0 5px 10px rgba(0, 0, 0, 0.3); }
+/* Styles des particules pour chaque section */
+.magic-particle.hero {
+    background: radial-gradient(circle, rgba(252, 252, 252, 0.8), transparent); /* Violet pour hero-section */
+}
+
+.magic-particle.find-friends {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8), transparent); /* Violet moyen pour find-friends-section */
+}
+
+.magic-particle.find-events {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8), transparent); /* Bleu pour find-events-section */
+}
+
+.magic-particle.create-events {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8), transparent); /* Cyan pour create-events-section */
+}
+
+.magic-particle.discover-places {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8), transparent); /* Vert pour discover-places-section */
+}
+
+.magic-particle.download {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8), transparent); /* Rose pour download-section */
+}
+
+/* Style de base des particules */
+.magic-particle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: particleFade 1s ease-out forwards;
+    z-index: 5;
+}
+
+@keyframes particleFade {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(2); opacity: 0; }
 }
 
 @media (max-width: 768px) {
@@ -518,5 +593,24 @@ html {
     
     .text-container::before {
         display: none; /* Désactiver l'effet d'étoiles sur mobile */
+    }
+    
+    .phone-mockup img {
+        max-width: 100%; /* Réduit la taille sur mobile pour éviter le débordement */
+        max-height: 70vh; /* Ajuste la hauteur pour mobile */
+    }
+    
+    .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .nav-links {
+        margin-top: 10px;
+    }
+    
+    .nav-links a {
+        margin-left: 0;
+        margin-right: 15px;
     }
 }

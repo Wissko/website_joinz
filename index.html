@@ -13,19 +13,16 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="logo">
-        <img src="logo.svg" alt="Joinz Logo">
-    </div>
-    
-    <!-- Menu déroulant en haut -->
-    <div class="navbar">
-        <select onchange="window.location.href=this.value">
-            <option value="#">Choisir une page</option>
-            <!--<option value="download.html">Télécharger</option>-->
-            <option value="condition/">Conditions d'utilisation</option>
-            <option value="politique/">Politique de Confidentialité</option>
-            <option value="support/">Support</option>
-        </select>
+    <!-- Nouveau conteneur pour le logo et les liens -->
+    <div class="header-container">
+        <div class="logo">
+            <img src="logo.svg" alt="Joinz Logo">
+        </div>
+        <nav class="nav-links">
+            <a href="condition/">Conditions d'utilisation</a>
+            <a href="politique/">Politique de Confidentialité</a>
+            <a href="support/">Support</a>
+        </nav>
     </div>
     
     <!-- Première section -->
@@ -44,7 +41,7 @@
                 <p>Plus besoin de chercher,<br>localise-les et rejoignez-vous en<br>un clic.</p>
             </div>
             <div class="phone-mockup">
-                <img src="mockup_iphone-Photoroom.png" alt="Joinz App Mockup">
+                <img src="Iphone_Mockup1_2.png" alt="Joinz App Mockup">
             </div>
         </div>
     </section>
@@ -53,7 +50,7 @@
     <section class="find-events-section">
         <div class="section-content reverse">
             <div class="phone-mockup">
-                <img src="mockup_events.png" alt="Joinz Events App">
+                <img src="Iphone_Mockup1.png" alt="Joinz Events App">
             </div>
             <div class="text-container">
                 <h2>Trouve les meilleures<br>soirées près de<br>toi en un instant !</h2>
@@ -70,7 +67,7 @@
                 <p>Invite tes amis, choisis le lieu et<br>partage l'info facilement. Plus<br>besoin de galérer, tout se fait<br>en quelques clics !</p>
             </div>
             <div class="phone-mockup">
-                <img src="events-creation-mockup.png" alt="Joinz Events Creation">
+                <img src="Iphone_Mockup1.png" alt="Joinz Events Creation">
             </div>
         </div>
     </section>
@@ -79,7 +76,7 @@
     <section class="discover-places-section">
       <div class="section-content reverse">
           <div class="phone-mockup">
-              <img src="bars-restos-mockup.png" alt="Joinz Bars et Restos">
+              <img src="Iphone_Mockup1.png" alt="Joinz Bars et Restos">
           </div>
           <div class="text-container">
               <h2>Découvre les<br>meilleurs bars et<br>restos autour de<br>toi !</h2>
@@ -119,8 +116,8 @@
             <div class="footer-column">
                 <h3>JOINZ</h3>
                 <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="contact.html">Contact</a>
+                <a href="index.html">About</a>
+                <a href="support/">Contact</a>
             </div>
         </div>
         <div class="footer-bottom">
@@ -130,6 +127,5 @@
     </footer>
 
     <script src="script.js"></script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'91eb9f802a41dd1c',t:'MTc0MTcwMTQ0Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body>
 </html>
