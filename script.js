@@ -53,6 +53,11 @@ function enterJoinz() {
     alert("Bienvenue dans l'univers magique de Joinz!");
 }
 
+// Fonction pour afficher le message de beta test
+function showBetaMessage() {
+    alert("Le beta test est bientôt disponible !");
+}
+
 // Style des particules ajouté dynamiquement
 const styleSheet = document.createElement('style');
 styleSheet.textContent = `
