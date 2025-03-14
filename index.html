@@ -8,12 +8,11 @@
     <link rel="icon" type="image/png" sizes="16x16" href="icon.png">
     <link rel="manifest" href="site.webmanifest">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <!-- Importer la police Poppins (ExtraBold) depuis Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Nouveau conteneur pour le logo et les liens -->
+    <!-- Header -->
     <div class="header-container">
         <div class="logo">
             <img src="logo.svg" alt="Joinz Logo">
@@ -23,8 +22,9 @@
             <a href="politique/">Politique de Confidentialité</a>
             <a href="support/">Support</a>
         </nav>
+        <a class="download-btn header-download-btn" onclick="showBetaMessage()">Download Beta Now</a>
     </div>
-    
+
     <!-- Première section -->
     <section class="hero-section">
         <div class="text-container">
@@ -32,7 +32,10 @@
             <p>Avec Joinz, organisez des événements, retrouvez vos amis en temps réel et partagez des moments uniques. Vivez vos rencontres, simplement.</p>
         </div>
     </section>
-    
+
+    <!-- Divider entre sections -->
+    <div class="section-divider"></div>
+
     <!-- Deuxième section - Retrouve tes amis -->
     <section class="find-friends-section">
         <div class="section-content">
@@ -45,7 +48,10 @@
             </div>
         </div>
     </section>
-    
+
+    <!-- Divider entre sections -->
+    <div class="section-divider"></div>
+
     <!-- Troisième section - Trouve les meilleures soirées -->
     <section class="find-events-section">
         <div class="section-content reverse">
@@ -58,7 +64,10 @@
             </div>
         </div>
     </section>
-    
+
+    <!-- Divider entre sections -->
+    <div class="section-divider"></div>
+
     <!-- Quatrième section - Crée tes propres événements -->
     <section class="create-events-section">
         <div class="section-content">
@@ -72,18 +81,24 @@
         </div>
     </section>
 
+    <!-- Divider entre sections -->
+    <div class="section-divider"></div>
+
     <!-- Cinquième section - Découvre les bars et restos -->
     <section class="discover-places-section">
-      <div class="section-content reverse">
-          <div class="phone-mockup">
-              <img src="Iphone_Mockup1.png" alt="Joinz Bars et Restos">
-          </div>
-          <div class="text-container">
-              <h2>Découvre les<br>meilleurs bars et<br>restos autour de<br>toi !</h2>
-              <p>Trouve facilement les spots<br>parfaits pour sortir et retrouve<br>tes amis sans prise de tête.</p>
-          </div>
-      </div>
+        <div class="section-content reverse">
+            <div class="phone-mockup">
+                <img src="Iphone_Mockup1.png" alt="Joinz Bars et Restos">
+            </div>
+            <div class="text-container">
+                <h2>Découvre les<br>meilleurs bars et<br>restos autour de<br>toi !</h2>
+                <p>Trouve facilement les spots<br>parfaits pour sortir et retrouve<br>tes amis sans prise de tête.</p>
+            </div>
+        </div>
     </section>
+
+    <!-- Divider entre sections -->
+    <div class="section-divider"></div>
 
     <!-- Sixième section - Téléchargement -->
     <section class="download-section">
@@ -99,7 +114,6 @@
                         <img src="play-store.png" alt="Google Play">
                     </a>
                 </div>
-                <!-- Bouton modifié pour appeler une fonction JavaScript -->
                 <a class="download-btn" onclick="showBetaMessage()">Download Beta Now</a>
             </div>
         </div>

@@ -3,12 +3,11 @@ body {
     font-family: Arial, sans-serif;
     color: white;
     overflow-x: hidden;
-    background: #0a0a23; /* Fond sombre pour effet magique */
+    background: #0a0a23;
     position: relative;
     min-height: 100vh;
 }
 
-/* Effet de particules magiques en fond */
 body::before {
     content: '';
     position: fixed;
@@ -30,14 +29,14 @@ section {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: clamp(20px, 5vw, 40px); /* Padding adaptatif */
+    padding: clamp(20px, 5vw, 40px);
+    padding-bottom: 80px;
     box-sizing: border-box;
-    scroll-snap-align: start;
     position: relative;
     z-index: 10;
     overflow: hidden;
-    border: none;
-    background: transparent;
+    margin-bottom: -50px; /* Superposition pour fusionner les sections */
+    /* scroll-snap-align: start; supprimé pour liberté de défilement */
 }
 
 /* Header */
@@ -47,9 +46,14 @@ section {
     left: clamp(10px, 2vw, 20px);
     display: flex;
     align-items: center;
+    justify-content: space-between;
     z-index: 100;
     width: 90%;
     flex-wrap: wrap;
+    background: #e6b0e0;
+    padding: 10px 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
@@ -60,7 +64,7 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 15px rgba(156, 39, 176, 0.7); /* Lueur violette */
+    box-shadow: 0 0 15px rgba(156, 39, 176, 0.7);
     transition: transform 0.3s ease;
     margin-right: clamp(10px, 2vw, 20px);
 }
@@ -72,22 +76,27 @@ section {
 }
 
 .logo:hover {
-    transform: scale(1.1) rotate(360deg); /* Rotation magique */
+    transform: scale(1.1) rotate(360deg);
 }
 
 .nav-links {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 5px 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .nav-links a {
-    color: white;
+    color: #000000;
     text-decoration: none;
-    margin: 0 clamp(5px, 1vw, 15px);
+    margin: 0 clamp(10px, 2vw, 20px);
     font-size: clamp(12px, 2vw, 14px);
     font-weight: bold;
     transition: color 0.3s ease;
+    white-space: nowrap;
 }
 
 .nav-links a:hover {
@@ -95,7 +104,68 @@ section {
     text-decoration: underline;
 }
 
-/* Conteneur de texte avec effets uniques */
+.download-btn {
+    background-color: white;
+    color: #9C27B0;
+    font-weight: bold;
+    font-size: clamp(16px, 2.5vw, 18px);
+    padding: clamp(10px, 1.5vw, 15px) clamp(20px, 4vw, 40px);
+    border-radius: 30px;
+    text-decoration: none;
+    box-shadow: 0 0 20px rgba(156, 39, 176, 0.7);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.download-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 70%);
+    animation: shine 3s infinite ease-in-out;
+}
+
+.download-btn:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 0 30px rgba(156, 39, 176, 1);
+}
+
+.header-download-btn {
+    background: #ffffff;
+    color: #000000;
+    font-size: clamp(12px, 2vw, 14px);
+    padding: 5px 15px;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    margin-left: clamp(10px, 2vw, 20px);
+    white-space: nowrap;
+}
+
+.header-download-btn:hover {
+    color: #9C27B0;
+    transform: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Nouveau séparateur doux */
+.section-divider {
+    width: 100%;
+    height: 80px;
+    position: relative;
+    z-index: 5;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0) 100%);
+    clip-path: ellipse(150% 60% at 50% 50%);
+    margin: -40px 0;
+    animation: waveFlow 6s infinite ease-in-out;
+}
+
+/* Conteneur de texte */
 .text-container {
     max-width: 90%;
     opacity: 0;
@@ -103,21 +173,22 @@ section {
     transition: opacity 0.5s ease, transform 0.5s ease, text-shadow 0.3s ease;
     position: relative;
     cursor: default;
-    background: transparent;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 15px;
 }
 
 .text-container.visible {
     opacity: 1;
     transform: translateY(0) scale(1);
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7); /* Lueur de base */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
 }
 
 .text-container:hover {
     transform: scale(1.05);
-    text-shadow: 0 0 20px rgba(156, 39, 176, 1), 0 0 40px rgba(255, 255, 255, 0.8); /* Auréole lumineuse */
+    text-shadow: 0 0 20px rgba(156, 39, 176, 1), 0 0 40px rgba(255, 255, 255, 0.8);
 }
 
-/* Effet d’étoiles scintillantes */
 .text-container::before {
     content: '';
     position: absolute;
@@ -131,7 +202,6 @@ section {
     z-index: -1;
 }
 
-/* Auréole au survol */
 .text-container:hover::after {
     content: '';
     position: absolute;
@@ -149,9 +219,9 @@ section {
     text-align: center;
 }
 
-/* Section Hero avec effets uniques */
+/* Sections avec dégradés doux */
 .hero-section {
-    background: linear-gradient(45deg, #00A9E0, #9C27B0, #E91E63);
+    background: linear-gradient(45deg, #00A9E0 0%, #9C27B0 70%, #E91E63 100%);
     text-align: center;
     animation: gradientFlow 10s infinite ease-in-out;
     position: relative;
@@ -189,25 +259,24 @@ section {
     color: rgba(255, 255, 255, 0.8);
 }
 
-/* Autres sections avec dégradés uniques */
 .find-friends-section {
-    background: linear-gradient(to right, #9C27B0, #8E24AA, #4A148C);
+    background: linear-gradient(to bottom, rgba(233, 30, 99, 0.2) 0%, #9C27B0 30%, #8E24AA 70%, #4A148C 100%);
 }
 
 .find-events-section {
-    background: linear-gradient(to right, #4A148C, #3949AB, #1976D2);
+    background: linear-gradient(to bottom, rgba(142, 36, 170, 0.2) 0%, #4A148C 30%, #3949AB 70%, #1976D2 100%);
 }
 
 .create-events-section {
-    background: linear-gradient(to right, #1976D2, #00BCD4, #009688);
+    background: linear-gradient(to bottom, rgba(57, 73, 171, 0.2) 0%, #1976D2 30%, #00BCD4 70%, #009688 100%);
 }
 
 .discover-places-section {
-    background: linear-gradient(to right, #009688, #4CAF50, #8BC34A);
+    background: linear-gradient(to bottom, rgba(0, 188, 212, 0.2) 0%, #009688 30%, #4CAF50 70%, #8BC34A 100%);
 }
 
 .download-section {
-    background: linear-gradient(to right, #9C27B0, #E91E63, #FF9800);
+    background: linear-gradient(to bottom, rgba(139, 195, 74, 0.2) 0%, #9C27B0 30%, #E91E63 70%, #FF9800 100%);
 }
 
 /* Contenu des sections */
@@ -257,7 +326,7 @@ section {
     text-align: center;
 }
 
-/* Mockups avec effet de balayage */
+/* Mockups */
 .phone-mockup {
     flex: 1;
     display: flex;
@@ -270,7 +339,7 @@ section {
 
 .phone-mockup img {
     width: 100%;
-    max-width: clamp(200px, 50vw, 500px); /* Taille adaptative */
+    max-width: clamp(200px, 50vw, 500px);
     height: auto;
     filter: drop-shadow(0 0 20px rgba(156, 39, 176, 0.5));
     transition: transform 0.3s ease;
@@ -279,11 +348,11 @@ section {
 
 .phone-mockup.swipe-in img {
     transform: translateX(0);
-    transition: transform 0.8s ease-out; /* Balayage fluide */
+    transition: transform 0.8s ease-out;
 }
 
 .phone-mockup:hover img {
-    transform: scale(1.05) rotate(2deg); /* Effet magique au survol */
+    transform: scale(1.05) rotate(2deg);
 }
 
 /* Boutons App Store */
@@ -311,38 +380,6 @@ section {
 
 .app-buttons img {
     height: clamp(30px, 5vw, 40px);
-}
-
-/* Bouton de téléchargement avec effet brillant */
-.download-btn {
-    background-color: white;
-    color: #9C27B0;
-    font-weight: bold;
-    font-size: clamp(16px, 2.5vw, 18px);
-    padding: clamp(10px, 1.5vw, 15px) clamp(20px, 4vw, 40px);
-    border-radius: 30px;
-    text-decoration: none;
-    box-shadow: 0 0 20px rgba(156, 39, 176, 0.7);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.download-btn::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 70%);
-    animation: shine 3s infinite ease-in-out;
-}
-
-.download-btn:hover {
-    transform: scale(1.05) translateY(-5px);
-    box-shadow: 0 0 30px rgba(156, 39, 176, 1);
 }
 
 /* Footer */
@@ -388,10 +425,10 @@ footer {
     margin-top: clamp(15px, 3vw, 30px);
 }
 
-/* Scroll fluide */
+/* Scroll fluide uniquement, sans snapping */
 html {
     scroll-behavior: smooth;
-    scroll-snap-type: y proximity;
+    /* scroll-snap-type: y proximity; supprimé pour liberté de défilement */
 }
 
 /* Animations */
@@ -427,20 +464,27 @@ html {
     100% { opacity: 0.8; transform: scale(1); }
 }
 
+@keyframes waveFlow {
+    0% { transform: translateY(0); opacity: 0.8; }
+    50% { transform: translateY(10px); opacity: 1; }
+    100% { transform: translateY(0); opacity: 0.8; }
+}
+
 @keyframes particleFade {
-    0% { transform: scale(1); opacity: 1; }
+    0% { transform: scale(0.5); opacity: 0.8; }
+    50% { transform: scale(1.2); opacity: 1; }
     100% { transform: scale(2); opacity: 0; }
 }
 
 /* Particules magiques */
 .magic-particle {
     position: absolute;
-    width: 5px;
-    height: 5px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     pointer-events: none;
-    animation: particleFade 1s ease-out forwards;
-    z-index: 5;
+    animation: particleFade 1.5s ease-out forwards;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .magic-particle.hero {
@@ -467,21 +511,37 @@ html {
     background: radial-gradient(circle, rgba(255, 255, 255, 0.8), transparent);
 }
 
-/* Media Queries pour petits écrans */
+/* Media Queries */
 @media (max-width: 768px) {
     .header-container {
         flex-direction: column;
         align-items: flex-start;
+        padding: 10px;
     }
 
     .nav-links {
-        margin-top: clamp(5px, 1vw, 10px);
+        margin-top: 10px;
         flex-direction: column;
         align-items: flex-start;
+        width: 100%;
+        padding: 10px;
     }
 
     .nav-links a {
-        margin: clamp(5px, 1vw, 10px) 0;
+        margin: 5px 0;
+        text-align: center;
+        width: 100%;
+    }
+
+    .header-download-btn {
+        margin-top: 10px;
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .section-divider {
+        height: 40px;
     }
 
     .section-content,
@@ -519,6 +579,6 @@ html {
     }
 
     .text-container::before {
-        display: none; /* Désactive l’effet d’étoiles sur mobile pour performance */
+        display: none;
     }
 }

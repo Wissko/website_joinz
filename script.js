@@ -1,9 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     const sections = document.querySelectorAll('section');
     let currentSection = 0;
-    let currentParticleClass = 'hero'; // Classe par défaut pour la première section
+    let currentParticleClass = 'hero';
 
-    // Fonction pour gérer la visibilité du texte
     function updateTextVisibility() {
         sections.forEach((section, index) => {
             const textContainer = section.querySelector('.text-container');
@@ -17,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Observer pour détecter quelle section est visible
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -25,13 +23,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 currentSection = sectionIndex;
                 updateTextVisibility();
 
-                // Ajouter l'effet de balayage au mockup de la section visible
                 const phoneMockup = entry.target.querySelector('.phone-mockup');
                 if (phoneMockup) {
                     phoneMockup.classList.add('swipe-in');
                 }
 
-                // Mettre à jour la classe des particules en fonction de la section visible
                 if (entry.target.classList.contains('hero-section')) {
                     currentParticleClass = 'hero';
                 } else if (entry.target.classList.contains('find-friends-section')) {
@@ -46,7 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     currentParticleClass = 'download';
                 }
             } else {
-                // Retirer la classe swipe-in quand la section n'est plus visible (optionnel)
                 const phoneMockup = entry.target.querySelector('.phone-mockup');
                 if (phoneMockup) {
                     phoneMockup.classList.remove('swipe-in');
@@ -54,25 +49,22 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }, {
-        threshold: 0.5 // Déclenche quand 50% de la section est visible
+        threshold: 0.5
     });
 
-    // Observer toutes les sections
     sections.forEach(section => {
         observer.observe(section);
     });
 
-    // Effet de particules au mouvement de la souris
     document.addEventListener('mousemove', (e) => {
         const particle = document.createElement('div');
-        particle.className = `magic-particle ${currentParticleClass}`; // Ajouter la classe correspondant à la section
+        particle.className = `magic-particle ${currentParticleClass}`;
         particle.style.left = `${e.pageX}px`;
         particle.style.top = `${e.pageY}px`;
         document.body.appendChild(particle);
-        setTimeout(() => particle.remove(), 1000);
+        setTimeout(() => particle.remove(), 1500); // Durée plus longue pour un effet doux
     });
 
-    // Initialiser la première section
     sections[0].scrollIntoView({ behavior: 'auto' });
     updateTextVisibility();
 });
@@ -81,7 +73,6 @@ function enterJoinz() {
     alert("Bienvenue dans l'univers magique de Joinz!");
 }
 
-// Fonction pour afficher le message de beta test
 function showBetaMessage() {
     alert("Le beta test est bientôt disponible !");
 }
